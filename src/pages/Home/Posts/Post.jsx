@@ -1,4 +1,4 @@
-import Tag from "./Tag";
+import Tag from "../../../components/Tag";
 import { FaComment } from "react-icons/fa";
 import { MdHowToVote } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Post = ({ post }) => {
 
     const { _id,
-        authorImage,
+      //  authorImage,
         title,
         tags,
         upVote,
