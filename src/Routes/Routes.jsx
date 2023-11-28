@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import PostDetails from "../pages/PostDetails/PostDetails";
+import Register from "../pages/Register/Register";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
                 path: "/post/:id",
                 element: <PostDetails></PostDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/posts/${params.id}`)
+            },
+            {
+                path: "/register",
+                element: <Register></Register>,
             },
         ],
     },
