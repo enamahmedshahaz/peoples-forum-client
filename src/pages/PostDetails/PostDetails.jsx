@@ -19,6 +19,7 @@ import Tag from '../../components/Tag';
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const PostDetails = () => {
 
@@ -29,13 +30,14 @@ const PostDetails = () => {
     const [downVoteCount, setDownVoteCount] = useState(downVote);
 
     const commentInput = useRef();
+    const axiosSecure = useAxiosSecure();
 
     //const shareUrl = `http://localhost:5000/posts/${_id}`;
 
     const shareUrl = 'https://chat.openai.com/';
 
     const handleDownVote = (id) => {
-        axios.patch(`http://localhost:5000/posts/incrementDownVote/${id}`)
+        axiosSecure.patch(`/posts/incrementDownVote/${id}`)
             .then(res => {
                 setDownVoteCount(res.data.updatedDownVote);
             }).catch(error => {
@@ -44,7 +46,7 @@ const PostDetails = () => {
     }
 
     const handleUpVote = (id) => {
-        axios.patch(`http://localhost:5000/posts/incrementUpVote/${id}`)
+        axiosSecure.patch(`/posts/incrementUpVote/${id}`)
             .then(res => {
                 setUpVoteCount(res.data.updatedUpVote);
             }).catch(error => {
@@ -63,7 +65,7 @@ const PostDetails = () => {
             createdAt: new Date()
         }
 
-        axios.post(`http://localhost:5000/comments`, newComment)
+        axiosSecure.post(`/comments`, newComment)
             .then(res => {
                 console.log(res.data.insertedId)
                 if (res.data.insertedId) {

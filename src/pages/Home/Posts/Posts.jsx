@@ -1,21 +1,22 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Post from "./Post";
 import { FaSortAmountUp } from "react-icons/fa";
+import useAxiosPublic from "../../../hooks/useAxiosPublic"
 
 const Posts = () => {
 
     const [posts, setPosts] = useState([]);
     const [sort, setSort] = useState(0);
     const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/posts?sort=${sort}`)
+        axiosPublic.get(`/posts?sort=${sort}`)
             .then(res => {
                 setPosts(res.data);
                 setLoading(false);
             }).catch(err => console.log(err));
-    }, [sort])
+    }, [sort, axiosPublic])
 
     const handleSort = () => {
         setSort(1);
