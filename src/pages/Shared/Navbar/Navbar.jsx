@@ -86,7 +86,7 @@ const Navbar = () => {
                             <div className="menu menu-sm  mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <p className="text-center">Welcome, <span className="font-semibold">{userInfo?.name}</span> </p>
                                 <ul className="mt-3">
-                                    <li> <Link to={"/dashboard"}>Dashboard</Link> </li>
+                                    <li> <Link to={"/dashboard/myProfile"}>Dashboard</Link> </li>
                                     <li> <button onClick={handleLogout}>Logout</button> </li>
                                 </ul>
                             </div>
