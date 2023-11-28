@@ -3,17 +3,51 @@ import { useLoaderData } from 'react-router-dom';
 import SectionTitle from "../../components/SectionTitle"
 import { FaEnvelope } from 'react-icons/fa';
 import { FaTags } from "react-icons/fa";
-import { FaShare } from "react-icons/fa";
-
 import { BiSolidUpvote, BiSolidDownvote } from "react-icons/bi";
+
+import {
+    EmailIcon,
+    EmailShareButton,
+    FacebookIcon,
+    FacebookShareButton,
+    WhatsappIcon,
+    WhatsappShareButton,
+} from "react-share";
 
 
 import Tag from '../../components/Tag';
+import axios from 'axios';
+import { useState } from 'react';
 
 const PostDetails = () => {
 
     const loadedPost = useLoaderData();
-    const { _id, authorName, authorEmail, authorImage, title, description, tags } = loadedPost;
+    const { _id, authorName, authorEmail, authorImage, title, description, tags, upVote, downVote } = loadedPost;
+
+    const [upVoteCount, setUpVoteCount] = useState(upVote);
+    const [downVoteCount, setDownVoteCount] = useState(downVote);
+
+    //const shareUrl = `http://localhost:5000/posts/${_id}`;
+
+    const shareUrl = 'https://chat.openai.com/';
+
+    const handleDownVote = (id) => {
+        axios.patch(`http://localhost:5000/posts/incrementDownVote/${id}`)
+            .then(res => {
+                setDownVoteCount(res.data.updatedDownVote);
+            }).catch(error => {
+                console.log(error);
+            })
+    }
+
+    const handleUpVote = (id) => {
+        axios.patch(`http://localhost:5000/posts/incrementUpVote/${id}`)
+            .then(res => {
+                setUpVoteCount(res.data.updatedUpVote);
+            }).catch(error => {
+                console.log(error);
+            })
+    }
 
     return (
         <div className='flex min-h-screen gap-4 my-5'>
@@ -46,12 +80,23 @@ const PostDetails = () => {
                 <div className='flex justify-between my-5'>
 
                     <div>
-                        <button className='btn btn-sm btn-warning text-white'> <BiSolidDownvote className='text-2xl inline-block'></BiSolidDownvote> Downvote</button>
-                        <button className='ml-5 btn btn-sm btn-success text-white'> <BiSolidUpvote className='text-2xl inline-block'></BiSolidUpvote> Upvote</button>
+                        <button onClick={() => handleDownVote(_id)} className='btn btn-sm btn-warning text-white'> <BiSolidDownvote className='text-2xl inline-block'></BiSolidDownvote> Downvote {downVoteCount}</button>
+                        <button onClick={() => handleUpVote(_id)} className='ml-5 btn btn-sm btn-success text-white'> <BiSolidUpvote className='text-2xl inline-block'></BiSolidUpvote> Upvote {upVoteCount}</button>
                     </div>
 
-                    <div>
-                        <button className='btn btn-sm btn-primary'> <FaShare className='text-2xl inline-block'></FaShare> Share</button>
+                    <div className='space-x-2'>
+
+                        <EmailShareButton url={shareUrl}>
+                            <EmailIcon size={32} round />
+                        </EmailShareButton>
+
+                        <FacebookShareButton url={shareUrl}>
+                            <FacebookIcon size={32} round />
+                        </FacebookShareButton>
+
+                        <WhatsappShareButton url={shareUrl} >
+                            <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
                     </div>
                 </div>
 
