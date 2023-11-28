@@ -1,25 +1,12 @@
-import { useEffect, useState } from "react";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-
-
+import useTags from "../../../hooks/useTags";
 const TagList = () => {
 
-    const [tags, setTags] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const axiosPublic = useAxiosPublic();
-
-    useEffect(() => {
-        axiosPublic.get('/tags')
-            .then(res => {
-                setTags(res.data);
-                setLoading(false);
-            }).catch(err => console.log(err));
-    }, [axiosPublic])
+    const [tags, isLoading,] = useTags();
 
     return (
         <div className="flex flex-wrap gap-2">
             {
-                loading ?
+                isLoading ?
                     <span className="loading loading-bars loading-lg"></span>
                     :
                     tags.map((tag, idx) =>

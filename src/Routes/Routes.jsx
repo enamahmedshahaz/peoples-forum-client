@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoutes from "./PrivateRoutes"
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import AddPosts from "../pages/Dashboard/AddPosts/AddPosts";
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: "myProfile",
                 element: <MyProfile></MyProfile>
+            },
+            {
+                path: "addPosts",
+                element: <AddPosts></AddPosts>
             },
 
         ],
