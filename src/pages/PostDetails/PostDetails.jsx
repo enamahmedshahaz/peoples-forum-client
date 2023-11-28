@@ -17,7 +17,8 @@ import {
 
 import Tag from '../../components/Tag';
 import axios from 'axios';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const PostDetails = () => {
 
@@ -26,6 +27,8 @@ const PostDetails = () => {
 
     const [upVoteCount, setUpVoteCount] = useState(upVote);
     const [downVoteCount, setDownVoteCount] = useState(downVote);
+
+    const commentInput = useRef();
 
     //const shareUrl = `http://localhost:5000/posts/${_id}`;
 
@@ -44,6 +47,35 @@ const PostDetails = () => {
         axios.patch(`http://localhost:5000/posts/incrementUpVote/${id}`)
             .then(res => {
                 setUpVoteCount(res.data.updatedUpVote);
+            }).catch(error => {
+                console.log(error);
+            })
+    }
+
+    const handleAddComment = (id) => {
+
+        const newComment = {
+            postId: id,
+            authorName,
+            authorEmail,
+            authorImage,
+            content: commentInput.current.value,
+            createdAt: new Date()
+        }
+
+        axios.post(`http://localhost:5000/comments`, newComment)
+            .then(res => {
+                console.log(res.data.insertedId)
+                if (res.data.insertedId) {
+                    commentInput.current.value = '';
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your comment is added!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
             }).catch(error => {
                 console.log(error);
             })
@@ -107,12 +139,11 @@ const PostDetails = () => {
                             <span className="label-text">Add comment on this post</span>
 
                         </label>
-                        <textarea className="textarea textarea-bordered h-36" placeholder="Enter comment text here "></textarea>
+                        <textarea ref={commentInput} className="textarea textarea-bordered h-36" placeholder="Enter comment text here "></textarea>
                     </div>
 
-                    <div>
+                    <div onClick={() => handleAddComment(_id)}>
                         <button className='btn btn-sm btn-secondary'>Add comment</button>
-
                     </div>
                 </div>
 
