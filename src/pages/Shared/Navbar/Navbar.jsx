@@ -3,14 +3,37 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { FaPeopleGroup } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth";
 import useUserInfo from "../../../hooks/useUserInfo";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
 
     const { user, signOutUser } = useAuth();
-
     const [userInfo] = useUserInfo();
 
+    const handleLogout = () => {
+
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Sign-out successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Error while Sign-out!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    }
 
     const navLinks =
         <>
@@ -64,7 +87,7 @@ const Navbar = () => {
                                 <p className="text-center">Welcome, <span className="font-semibold">{userInfo?.name}</span> </p>
                                 <ul className="mt-3">
                                     <li> <Link to={"/dashboard"}>Dashboard</Link> </li>
-                                    <li> <button>Logout</button> </li>
+                                    <li> <button onClick={handleLogout}>Logout</button> </li>
                                 </ul>
                             </div>
                         </div>
