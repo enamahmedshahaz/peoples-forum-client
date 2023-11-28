@@ -1,10 +1,11 @@
+import bannerImg from "../../../assets/images/banner/banner.jpg"
 
 
 const Banner = () => {
 
     return (
-        <div className="hero h-[600px] bg-fixed" style={{ backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)' }}>
-            <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero h-[600px] bg-fixed" style={{ backgroundImage: `url(${bannerImg})` }}>
+            <div className="hero-overlay bg-opacity-80"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-xl">
                     <h1 className="mb-5 text-5xl font-bold">Connect, Discuss, Thrive: Welcome to Peoples Forum!</h1>
