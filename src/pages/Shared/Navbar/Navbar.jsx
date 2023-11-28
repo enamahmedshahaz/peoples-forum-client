@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FaPeopleGroup } from "react-icons/fa6";
+import useAuth from "../../../hooks/useAuth";
+import useUserInfo from "../../../hooks/useUserInfo";
 
 
 const Navbar = () => {
+
+    const { user, signOutUser } = useAuth();
+
+    const [userInfo] = useUserInfo();
+
 
     const navLinks =
         <>
@@ -15,7 +22,11 @@ const Navbar = () => {
                 <span className="badge badge-md indicator-item text-red-600">8</span>
             </div>
 
-            <li><Link to="/register">Join Us</Link> </li>
+            {
+                !user &&
+                <li><Link to="/register">Join Us</Link> </li>
+            }
+
         </>;
 
     return (
@@ -38,23 +49,27 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
 
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
-                    </div>
+                {
+                    user &&
 
-                    <div className="dropdown-content">
-                        <div className="menu menu-sm  mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <p className="text-center">Welcome, <span className="font-semibold">Enam Ahmed</span> </p>
-                            <ul className="mt-3">
-                                <li> <Link to={"/dashboard"}>Dashboard</Link> </li>
-                                <li> <button>Logout</button> </li>
-                            </ul>
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src={userInfo?.photo} />
+                            </div>
+                        </div>
+
+                        <div className="dropdown-content">
+                            <div className="menu menu-sm  mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                <p className="text-center">Welcome, <span className="font-semibold">{userInfo?.name}</span> </p>
+                                <ul className="mt-3">
+                                    <li> <Link to={"/dashboard"}>Dashboard</Link> </li>
+                                    <li> <button>Logout</button> </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
 
             </div>
         </div>
