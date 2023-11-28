@@ -3,11 +3,10 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 
 import { Helmet } from "react-helmet-async";
-import { useContext } from "react";
-import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -15,7 +14,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const Register = () => {
 
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
 

@@ -47,7 +47,7 @@ const Navbar = () => {
 
             {
                 !user &&
-                <li><Link to="/register">Join Us</Link> </li>
+                <li><Link to="/login">Join Us</Link> </li>
             }
 
         </>;
