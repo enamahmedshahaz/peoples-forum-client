@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes"
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import AddPosts from "../pages/Dashboard/AddPosts/AddPosts";
 import MyPosts from "../pages/Dashboard/MyPosts/MyPosts";
+import ViewComments from "../pages/Dashboard/ViewComments/ViewComments";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
             {
                 path: "/post/:id",
                 element: <PostDetails></PostDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/posts/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/posts/id/${params.id}`)
             },
             {
                 path: "/register",
@@ -50,7 +51,12 @@ export const router = createBrowserRouter([
                 path: "myPosts",
                 element: <MyPosts></MyPosts>
             },
-
+            {
+                path: "comments/:postId",
+                element: <ViewComments></ViewComments>,
+                loader: ({ params }) => fetch(`http://localhost:5000/comments/${params.postId}`)
+            },
+            
         ],
     },
 ])

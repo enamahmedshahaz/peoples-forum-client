@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { FaComment, FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const MyPosts = () => {
@@ -15,7 +16,7 @@ const MyPosts = () => {
     const { data: userPosts, isPending: isLoading, refetch } = useQuery({
         queryKey: [user?.email, 'userPosts'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/posts/${user.email}`);
+            const res = await axiosSecure.get(`/posts/email/${user.email}`);
             return res.data;
         }
     });
@@ -96,9 +97,11 @@ const MyPosts = () => {
                                 <td>{post.voteDifference}</td>
 
                                 <th>
-                                    <button className="btn btn-warning">
-                                        <FaComment></FaComment>
-                                    </button>
+                                    <Link to={`/dashboard/comments/${post._id}`}>
+                                        <button className="btn btn-warning">
+                                            <FaComment></FaComment>
+                                        </button>
+                                    </Link>
                                 </th>
 
                                 <th>

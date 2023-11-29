@@ -107,7 +107,7 @@ const PostDetails = () => {
                 <div className="flex flex-wrap gap-2 h-12">
                     <FaTags className='text-2xl'></FaTags>
                     {
-                        tags.map((tag, idx) => <Tag key={idx} tag={tag}></Tag>)
+                        tags?.map((tag, idx) => <Tag key={idx} tag={tag}></Tag>)
                     }
                 </div>
 
