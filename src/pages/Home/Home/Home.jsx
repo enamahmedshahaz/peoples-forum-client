@@ -21,10 +21,12 @@ const Home = () => {
                     <SectionTitle heading={"Announcements"} subHeading={"What's update?"}></SectionTitle>
                     </div>
                 </div>
+               
                 <div className="bg-red-200 w-3/4 p-5 rounded-md">
                 <SectionTitle heading={"Posts"} subHeading={"What people posted"}></SectionTitle>
                     <Posts></Posts>
                 </div>
+                
             </div>
 
         </div>

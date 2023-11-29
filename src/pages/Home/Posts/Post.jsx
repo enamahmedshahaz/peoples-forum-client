@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Post = ({ post }) => {
 
     const { _id,
-      //  authorImage,
+        authorImage,
         title,
         tags,
         upVote,
@@ -22,7 +22,7 @@ const Post = ({ post }) => {
 
         <Link to={`post/${_id}`}>
             <div className="card card-side bg-base-100 shadow-xl hover:shadow-blue-500">
-                <figure className="ml-3"><img className="rounded-xl" src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie" /></figure>
+                <figure className="ml-3"><img className="rounded-xl" src={authorImage} alt="User Photo" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     <div className="flex flex-wrap gap-2 max-h-min">
