@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import useUserInfo from '../../../hooks/useUserInfo'
 import useTags from "../../../hooks/useTags";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SectionTitle from "../../../components/SectionTitle";
 
 const AddPosts = () => {
 
@@ -39,7 +40,7 @@ const AddPosts = () => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: `${data.name} - Post added.`,
+                title: `${data.title} - Post added.`,
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -52,6 +53,9 @@ const AddPosts = () => {
             <Helmet>
                 <title>People&apos;s Forum | Add Posts </title>
             </Helmet>
+
+            <SectionTitle heading={'Add a New post'} subHeading={'Post your thoughts and ideas'}></SectionTitle>
+
 
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,7 +124,7 @@ const AddPosts = () => {
 
                         <select multiple defaultValue={[]} {...register('tags', { required: true })}
                             className="select select-bordered w-full">
-                            <option disabled value="default">Select a tag</option>
+                            <option disabled value="default">Select related tags</option>
                             {
                                 tags?.map((aTag, idx) => <option key={idx} value={aTag}>{aTag}</option>)
                             }

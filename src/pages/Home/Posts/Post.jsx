@@ -25,7 +25,7 @@ const Post = ({ post }) => {
                 <figure className="ml-3"><img className="rounded-xl" src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
-                    <div className="flex flex-wrap gap-2 h-14">
+                    <div className="flex flex-wrap gap-2 max-h-min">
                         {
                             tags.map((tag, idx) => <Tag key={idx} tag={tag}></Tag>)
                         }
