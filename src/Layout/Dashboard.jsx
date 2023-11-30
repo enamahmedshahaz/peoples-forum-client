@@ -3,6 +3,11 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { BsTextParagraph } from "react-icons/bs";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import { FaUsersCog } from "react-icons/fa";
+import { FaUserShield } from "react-icons/fa6";
+import { GrAnnounce } from "react-icons/gr";
+import { MdReport } from "react-icons/md";
+
 
 const Dashboard = () => {
 
@@ -21,19 +26,19 @@ const Dashboard = () => {
                             <>
                                 {/* Menu links for Admin users */}
                                 <li ><NavLink to="/dashboard/adminProfile">
-                                    <FaPerson></FaPerson>Admin Profile </NavLink>
+                                    <FaUserShield></FaUserShield>Admin Profile </NavLink>
                                 </li>
 
                                 <li><NavLink to="/dashboard/manageUsers">
-                                    <MdOutlinePostAdd></MdOutlinePostAdd> Manage Users </NavLink>
+                                    <FaUsersCog></FaUsersCog> Manage Users </NavLink>
                                 </li>
 
                                 <li><NavLink to="/dashboard/reportedComments">
-                                    <BsTextParagraph></BsTextParagraph>Reported Comments</NavLink>
+                                    <MdReport></MdReport>Reported Comments</NavLink>
                                 </li>
 
                                 <li><NavLink to="/dashboard/makeAnnouncement">
-                                    <BsTextParagraph></BsTextParagraph>Make Announcement</NavLink>
+                                    <GrAnnounce></GrAnnounce>Make Announcement</NavLink>
                                 </li>
                             </>
                             :

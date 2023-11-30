@@ -10,6 +10,10 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import AddPosts from "../pages/Dashboard/AddPosts/AddPosts";
 import MyPosts from "../pages/Dashboard/MyPosts/MyPosts";
 import ViewComments from "../pages/Dashboard/ViewComments/ViewComments";
+import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import ReportedComments from "../pages/Dashboard/ReportedComments/ReportedComments";
+import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +61,22 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/comments/${params.postId}`)
             },
 
+            {
+                path: "adminProfile",
+                element: <AdminProfile></AdminProfile>,
+            },
+            {
+                path: "manageUsers",
+                element: <ManageUsers></ManageUsers>,
+            },
+            {
+                path: "reportedComments",
+                element: <ReportedComments></ReportedComments>,
+            },
+            {
+                path: "makeAnnouncement",
+                element: <MakeAnnouncement></MakeAnnouncement>,
+            },
         ],
     },
 ])
