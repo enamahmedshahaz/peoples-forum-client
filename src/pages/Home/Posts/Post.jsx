@@ -13,7 +13,8 @@ const Post = ({ post }) => {
         tags,
         upVote,
         downVote,
-        latest
+        latest, 
+        commentCount
     } = post;
 
     const formattedTime = moment(latest).format('hh:mm a, DD MMM YYYY');
@@ -33,7 +34,7 @@ const Post = ({ post }) => {
                     <div className="card-actions justify-start">
                         <div className="flex flex-row gap-5">
                             <div className="flex items-center justify-center gap-2 bg-teal-200 p-3 rounded-lg">
-                                <FaComment className="text-2xl"></FaComment> 60
+                                <FaComment className="text-2xl"></FaComment> {commentCount}
                             </div>
                             <div className="flex items-center justify-center gap-2 bg-amber-300 p-3 rounded-lg">
                                 <MdHowToVote className="text-2xl"></MdHowToVote> {upVote - downVote}

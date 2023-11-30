@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../components/SectionTitle";
 import useUserInfo from "../../../hooks/useUserInfo";
-import badgeGold from '../../../assets/images/badge/gold.png'
-import badgeBronze from '../../../assets/images/badge/bronze.png'
+// import badgeGold from '../../../assets/images/badge/gold.png'
+// import badgeBronze from '../../../assets/images/badge/bronze.png'
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { ImUsers } from "react-icons/im";
 import { TfiWrite } from "react-icons/tfi";

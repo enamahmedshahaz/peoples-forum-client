@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import useUserInfo from "../../../hooks/useUserInfo";
 import Swal from "sweetalert2";
 import useAdmin from "../../../hooks/useAdmin";
+import useAnnouncements from "../../../hooks/useAnnouncements";
 
 
 const Navbar = () => {
@@ -13,6 +14,9 @@ const Navbar = () => {
     const [userInfo] = useUserInfo();
 
     const [isAdmin] = useAdmin();
+
+    const [announcements] = useAnnouncements();
+
 
     const handleLogout = () => {
 
@@ -45,7 +49,12 @@ const Navbar = () => {
 
             <div className="indicator">
                 <IoIosNotificationsOutline className="text-3xl" />
-                <span className="badge badge-md indicator-item text-red-600">8</span>
+
+                {
+                    announcements?.length > 0 &&
+                    <span className="font-bold badge badge-md indicator-item text-red-600">{announcements?.length} </span>
+                }
+
             </div>
 
             {
@@ -80,7 +89,7 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src={userInfo?.photo} alt="User photo" referrerpolicy="no-referrer"/>
+                                <img src={userInfo?.photo} alt="User photo" referrerpolicy="no-referrer" />
                             </div>
                         </div>
 
