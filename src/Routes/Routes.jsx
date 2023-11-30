@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
             {
                 path: "/post/:id",
                 element: <PostDetails></PostDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/posts/id/${params.id}`)
+                loader: ({ params }) => fetch(`https://b812-peoples-forum-server.vercel.app/posts/id/${params.id}`)
             },
             {
                 path: "/register",
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
             {
                 path: "comments/:postId",
                 element: <ViewComments></ViewComments>,
-                loader: ({ params }) => fetch(`http://localhost:5000/comments/${params.postId}`)
+                loader: ({ params }) => fetch(`https://b812-peoples-forum-server.vercel.app/comments/${params.postId}`)
             },
             
             {

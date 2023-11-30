@@ -32,9 +32,7 @@ const PostDetails = () => {
 
     const { user } = useAuth();
 
-    //const shareUrl = `http://localhost:5000/posts/${_id}`;
-
-    const shareUrl = 'https://chat.openai.com/';
+    const shareUrl = `https://b812-peoples-forum-server.vercel.app/posts/${_id}`;
 
     const handleDownVote = (id) => {
 
