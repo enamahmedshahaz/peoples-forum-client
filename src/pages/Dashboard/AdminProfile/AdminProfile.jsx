@@ -8,6 +8,7 @@ import { ImUsers } from "react-icons/im";
 import { TfiWrite } from "react-icons/tfi";
 import { FaComment } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import PieChartComponent from "./PieChartComponent";
 
 
 const AdminProfile = () => {
@@ -22,6 +23,11 @@ const AdminProfile = () => {
             .catch(err => console.log(console.log(err)))
     }, [axiosSecure]);
 
+    const pieChartData = [
+        { category: 'Users', value: stats.users },
+        { category: 'Posts', value: stats.posts },
+        { category: 'Comments', value: stats.comments },
+    ];
 
     return (
         <div>
@@ -47,8 +53,8 @@ const AdminProfile = () => {
                     }
                 </div>
 
-                <div className="flex flex-col justify-start items-center gap-3">
-                    <h2 className="text-2xl border-dotted border-b-2 border-emerald-700">Site Statistics</h2>
+                <div className="flex flex-col  gap-3">
+                    <h2 className="text-2xl text-center border-dotted border-b-2 border-emerald-700">Site Statistics</h2>
 
                     <div className="stats shadow-lg p-5 border border-teal-100 ">
 
@@ -73,6 +79,10 @@ const AdminProfile = () => {
                             <div className="stat-title">Comments</div>
                             <div className="stat-value">{stats.comments}</div>
                         </div>
+                    </div>
+
+                    <div className="shadow-lg p-5 border border-teal-100 rounded-xl">
+                        <PieChartComponent data={pieChartData} />
                     </div>
 
                 </div>

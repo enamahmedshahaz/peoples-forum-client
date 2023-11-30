@@ -14,7 +14,6 @@ import {
 
 
 import Tag from '../../components/Tag';
-import axios from 'axios';
 import { useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
