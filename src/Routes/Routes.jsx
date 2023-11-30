@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
                 element: <ViewComments></ViewComments>,
                 loader: ({ params }) => fetch(`http://localhost:5000/comments/${params.postId}`)
             },
-            
+
         ],
     },
 ])

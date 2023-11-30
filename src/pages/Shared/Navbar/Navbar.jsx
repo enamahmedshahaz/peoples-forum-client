@@ -4,12 +4,15 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth";
 import useUserInfo from "../../../hooks/useUserInfo";
 import Swal from "sweetalert2";
+import useAdmin from "../../../hooks/useAdmin";
 
 
 const Navbar = () => {
 
     const { user, signOutUser } = useAuth();
     const [userInfo] = useUserInfo();
+
+    const [isAdmin] = useAdmin();
 
     const handleLogout = () => {
 
@@ -74,7 +77,6 @@ const Navbar = () => {
 
                 {
                     user &&
-
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
@@ -86,7 +88,14 @@ const Navbar = () => {
                             <div className="menu menu-sm  mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <p className="text-center">Welcome, <span className="font-semibold">{userInfo?.name}</span> </p>
                                 <ul className="mt-3">
-                                    <li> <Link to={"/dashboard/myProfile"}>Dashboard</Link> </li>
+
+                                    {isAdmin ?
+                                        <>
+                                            <li> <Link to={"/dashboard/adminProfile"}>Admin Dashboard</Link> </li>
+                                        </> :
+                                        <li> <Link to={"/dashboard/myProfile"}>Dashboard</Link> </li>
+                                    }
+
                                     <li> <button onClick={handleLogout}>Logout</button> </li>
                                 </ul>
                             </div>
