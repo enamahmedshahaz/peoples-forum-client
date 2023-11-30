@@ -14,6 +14,7 @@ import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import ReportedComments from "../pages/Dashboard/ReportedComments/ReportedComments";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
+import AdminRoutes from "./AdminRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -60,22 +61,22 @@ export const router = createBrowserRouter([
                 element: <ViewComments></ViewComments>,
                 loader: ({ params }) => fetch(`http://localhost:5000/comments/${params.postId}`)
             },
-
+            
             {
                 path: "adminProfile",
-                element: <AdminProfile></AdminProfile>,
+                element: <AdminRoutes><AdminProfile></AdminProfile></AdminRoutes>,
             },
             {
                 path: "manageUsers",
-                element: <ManageUsers></ManageUsers>,
+                element: <AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>,
             },
             {
                 path: "reportedComments",
-                element: <ReportedComments></ReportedComments>,
+                element: <AdminRoutes><ReportedComments></ReportedComments> </AdminRoutes>,
             },
             {
                 path: "makeAnnouncement",
-                element: <MakeAnnouncement></MakeAnnouncement>,
+                element: <AdminRoutes><MakeAnnouncement></MakeAnnouncement></AdminRoutes>,
             },
         ],
     },
