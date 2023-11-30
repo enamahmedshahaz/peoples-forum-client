@@ -19,8 +19,8 @@ const PieChartComponent = ({ data }) => {
             <Cell key={`cell-${index}`} fill={`#${Math.floor(Math.random() * 16777215).toString(16)}`} />
           ))}
         </Pie>
-        <Tooltip />
-        <Legend />
+        <Tooltip/>
+        <Legend/>
       </PieChart>
     </ResponsiveContainer>
   );

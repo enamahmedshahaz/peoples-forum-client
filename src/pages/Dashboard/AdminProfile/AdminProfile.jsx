@@ -44,13 +44,13 @@ const AdminProfile = () => {
                     <img className=" w-52 rounded-lg" src={userInfo?.photo} alt="photo of user" referrerpolicy="no-referrer" />
                     <h2 className="text-xl font-semibold uppercase">{userInfo?.name}</h2>
                     <p>({userInfo?.email})</p>
-                    <p className="uppercase border-dotted font-semibold border-b-2 border-emerald-700">Badge:</p>
+                    {/* <p className="uppercase border-dotted font-semibold border-b-2 border-emerald-700">Badge:</p>
                     {
                         userInfo?.badge === 'gold' ?
                             <img className="w-20" src={badgeGold} alt="gold badge" />
                             : <img className=" w-28 rounded-lg" src={badgeBronze} alt="bronze badge" referrerpolicy="no-referrer" />
 
-                    }
+                    } */}
                 </div>
 
                 <div className="flex flex-col  gap-3">
