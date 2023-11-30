@@ -6,8 +6,6 @@ import { FaTags } from "react-icons/fa";
 import { BiSolidUpvote, BiSolidDownvote } from "react-icons/bi";
 
 import {
-    EmailIcon,
-    EmailShareButton,
     FacebookIcon,
     FacebookShareButton,
     WhatsappIcon,
@@ -20,6 +18,7 @@ import axios from 'axios';
 import { useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
 
 const PostDetails = () => {
 
@@ -32,55 +31,78 @@ const PostDetails = () => {
     const commentInput = useRef();
     const axiosSecure = useAxiosSecure();
 
+    const { user } = useAuth();
+
     //const shareUrl = `http://localhost:5000/posts/${_id}`;
 
     const shareUrl = 'https://chat.openai.com/';
 
     const handleDownVote = (id) => {
-        axiosSecure.patch(`/posts/incrementDownVote/${id}`)
-            .then(res => {
-                setDownVoteCount(res.data.updatedDownVote);
-            }).catch(error => {
-                console.log(error);
-            })
+
+        if (user) {
+            axiosSecure.patch(`/posts/incrementDownVote/${id}`)
+                .then(res => {
+                    setDownVoteCount(res.data.updatedDownVote);
+                }).catch(error => {
+                    console.log(error);
+                })
+        } else {
+            Swal.fire("Please login first");
+        }
+
     }
 
     const handleUpVote = (id) => {
-        axiosSecure.patch(`/posts/incrementUpVote/${id}`)
-            .then(res => {
-                setUpVoteCount(res.data.updatedUpVote);
-            }).catch(error => {
-                console.log(error);
-            })
+        if (user) {
+            axiosSecure.patch(`/posts/incrementUpVote/${id}`)
+                .then(res => {
+                    setUpVoteCount(res.data.updatedUpVote);
+                }).catch(error => {
+                    console.log(error);
+                })
+        } else {
+            Swal.fire("Please login first");
+        }
+
     }
 
     const handleAddComment = (id) => {
 
-        const newComment = {
-            postId: id,
-            authorName,
-            authorEmail,
-            authorImage,
-            content: commentInput.current.value,
-            createdAt: new Date()
+        if (user) {
+            if (commentInput.current.value.length > 0) {
+                const newComment = {
+                    postId: id,
+                    authorName,
+                    authorEmail,
+                    authorImage,
+                    content: commentInput.current.value,
+                    createdAt: new Date()
+                }
+
+                axiosSecure.post(`/comments`, newComment)
+                    .then(res => {
+                        console.log(res.data.insertedId)
+                        if (res.data.insertedId) {
+                            commentInput.current.value = '';
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your comment is added!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    }).catch(error => {
+                        console.log(error);
+                    })
+            } else {
+                Swal.fire("Comment can't be empty");
+            }
+        } else {
+            Swal.fire("Please login first");
         }
 
-        axiosSecure.post(`/comments`, newComment)
-            .then(res => {
-                console.log(res.data.insertedId)
-                if (res.data.insertedId) {
-                    commentInput.current.value = '';
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your comment is added!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            }).catch(error => {
-                console.log(error);
-            })
+
     }
 
     return (
@@ -88,7 +110,7 @@ const PostDetails = () => {
             <div className='bg-yellow-100 w-1/4 flex flex-col items-center p-2 rounded-lg space-y-5'>
                 <SectionTitle heading={'Author'} subHeading={'who posted'}></SectionTitle>
 
-                <img className='rounded-md w-28' src={authorImage} alt="User Photo" referrerpolicy="no-referrer"/>
+                <img className='rounded-md w-28' src={authorImage} alt="User Photo" referrerpolicy="no-referrer" />
                 <div className='text-center'>
                     <h4 className='text-xl'> {authorName}</h4>
                     <h4 className='text-base'> <FaEnvelope className='inline-block'></FaEnvelope> {authorEmail}</h4>
@@ -120,10 +142,6 @@ const PostDetails = () => {
 
                     <div className='space-x-2'>
 
-                        <EmailShareButton url={shareUrl}>
-                            <EmailIcon size={32} round />
-                        </EmailShareButton>
-
                         <FacebookShareButton url={shareUrl}>
                             <FacebookIcon size={32} round />
                         </FacebookShareButton>
@@ -141,7 +159,7 @@ const PostDetails = () => {
                             <span className="label-text">Add comment on this post</span>
 
                         </label>
-                        <textarea ref={commentInput} className="textarea textarea-bordered h-36" placeholder="Enter comment text here "></textarea>
+                        <textarea ref={commentInput} className="textarea textarea-bordered h-36" placeholder="Enter comment text here"></textarea>
                     </div>
 
                     <div onClick={() => handleAddComment(_id)}>
