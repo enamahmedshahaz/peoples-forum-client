@@ -98,7 +98,7 @@ const Login = () => {
                                     <span className="label-text">Password</span>
                                 </label>
 
-                                <input {...register("password", { required: true })} name="password" type="password" placeholder="Enter password" className="input input-bordered" />
+                                <input {...register("password", { required: true })} name="password" type="password" placeholder="Enter password" className="input input-bordered" autoComplete="on"/>
 
                                 {errors.password?.type === "required" && (
                                     <p className="text-red-600">Password is required</p>
@@ -106,8 +106,8 @@ const Login = () => {
 
                             </div>
 
-                            <div className="form-control ">
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                            <div className="form-control">
+                                <input  className="btn btn-primary mt-6" type="submit" value="Login" />
                             </div>
                         </form>
 

@@ -29,6 +29,7 @@ const ViewComments = () => {
 
         const report = {
             commentId: comment._id,
+            postId: comment.postId,
             comment: comment.content,
             commenterName: comment.authorName,
             commenterEmail: comment.authorEmail,

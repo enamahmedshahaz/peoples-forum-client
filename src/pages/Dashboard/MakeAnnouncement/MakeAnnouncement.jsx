@@ -49,7 +49,7 @@ const MakeAnnouncement = () => {
                 <title>People&apos;s Forum | Make Announcement </title>
             </Helmet>
 
-            <SectionTitle heading={'Make a Announcement'} subHeading={'Give instructions, announcements and  important updates to all users'}></SectionTitle>
+            <SectionTitle heading={'Make Announcement'} subHeading={'Give instructions, announcements and  important updates to all users'}></SectionTitle>
 
 
             <div>
