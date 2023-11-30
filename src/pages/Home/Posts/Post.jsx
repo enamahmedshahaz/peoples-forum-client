@@ -22,7 +22,7 @@ const Post = ({ post }) => {
 
         <Link to={`post/${_id}`}>
             <div className="card card-side bg-base-100 shadow-xl hover:shadow-blue-500">
-                <figure className="ml-3"><img className="rounded-xl" src={authorImage} alt="User Photo" /></figure>
+                <figure className="ml-3"><img className="rounded-xl" src={authorImage} alt="User Photo" referrerpolicy="no-referrer"/></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     <div className="flex flex-wrap gap-2 max-h-min">

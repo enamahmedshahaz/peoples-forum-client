@@ -60,7 +60,7 @@ const MakeAnnouncement = () => {
                         <label className="label">
                             <span className="label-text">Author Image</span>
                         </label>
-                        <img className="w-52 rounded-md mb-5" src={userInfo?.photo} />
+                        <img className="w-52 rounded-md mb-5" src={userInfo?.photo} referrerpolicy="no-referrer" />
                     </div>
 
                     {/* Author Name */}

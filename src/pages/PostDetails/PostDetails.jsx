@@ -88,7 +88,7 @@ const PostDetails = () => {
             <div className='bg-yellow-100 w-1/4 flex flex-col items-center p-2 rounded-lg space-y-5'>
                 <SectionTitle heading={'Author'} subHeading={'who posted'}></SectionTitle>
 
-                <img className='rounded-md w-28' src={authorImage} alt="User Photo" />
+                <img className='rounded-md w-28' src={authorImage} alt="User Photo" referrerpolicy="no-referrer"/>
                 <div className='text-center'>
                     <h4 className='text-xl'> {authorName}</h4>
                     <h4 className='text-base'> <FaEnvelope className='inline-block'></FaEnvelope> {authorEmail}</h4>

@@ -95,7 +95,7 @@ const ViewComments = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={comment.authorImage} alt="user photo" />
+                                                <img src={comment.authorImage} alt="user photo" referrerpolicy="no-referrer" />
                                             </div>
                                         </div>
                                         <div>
