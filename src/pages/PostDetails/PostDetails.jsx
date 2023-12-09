@@ -18,7 +18,7 @@ import { useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
-
+import useUserInfo from '../../hooks/useUserInfo';
 const PostDetails = () => {
 
     const loadedPost = useLoaderData();
@@ -32,7 +32,9 @@ const PostDetails = () => {
 
     const { user } = useAuth();
 
-    const shareUrl = `https://b812-peoples-forum-server.vercel.app/posts/${_id}`;
+    const shareUrl = `https://b8a12-peoples-forum.web.app/post/${_id}`;
+    const [userInfo] = useUserInfo();
+
 
     const handleDownVote = (id) => {
 
@@ -69,9 +71,9 @@ const PostDetails = () => {
             if (commentInput.current.value.length > 0) {
                 const newComment = {
                     postId: id,
-                    authorName,
-                    authorEmail,
-                    authorImage,
+                    authorName: userInfo?.name,
+                    authorEmail: userInfo?.email,
+                    authorImage: userInfo?.photo,
                     content: commentInput.current.value,
                     createdAt: new Date()
                 }
